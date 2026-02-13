@@ -12,6 +12,7 @@ public class Main {
         ClienteDAO clienteDAO = new ClienteDAO();
 
         int escolha = 1, opcao;
+        String nome, email;
 
         while (escolha != 2) {
 
@@ -26,10 +27,10 @@ public class Main {
                 case 1:
                     // Leitura do nome e email
                     System.out.print("Insira o nome: ");
-                    String nome = scanner.nextLine();
+                    nome = scanner.nextLine();
 
                     System.out.print("Insira o email: ");
-                    String email = scanner.nextLine();
+                    email = scanner.nextLine();
 
                     // criação do objeto cliente
                     Cliente cliente = new Cliente(nome, email);
@@ -40,10 +41,19 @@ public class Main {
                     System.out.println("Cliente cadastrado com sucesso!");
                     break;
                 case 2:
+
                     break;
                 case 3:
                     break;
                 case 4:
+                    // Leitura do email
+                    System.out.print("Insira o email do cliente: ");
+                    email = scanner.nextLine();
+
+                    // objeto clienteDAO deletando o cliente no BD
+                    clienteDAO.deletar(email);
+
+                    System.out.println("Cliente deletado com sucesso!");
                     break;
                 case 5:
                     System.out.println("FIM DO PROGRAMA!");
@@ -52,7 +62,8 @@ public class Main {
 
             }
             System.out.println("Deseja realizar mais alguma ação?");
-            System.out.print("1 - Sim\n2 - Não");
+            System.out.print("1 - Sim\n2 - Não\n");
+            System.out.print("Insira sua resposta: ");
             escolha = scanner.nextInt();
         }
 

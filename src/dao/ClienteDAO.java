@@ -23,7 +23,23 @@ public class ClienteDAO {
 
 
         } catch (SQLException e) {
-                 throw new RuntimeException("Erro ao inserir cliente", e);
+                 throw new RuntimeException("Erro ao inserir o cliente", e);
+        }
+    }
+
+    public void deletar (String email) {
+
+        String sql = "DELETE FROM Cliente WHERE email = ?";
+
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+
+                stmt.setString(1, email);
+
+                stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao deletar o cliente", e);
         }
     }
 }
