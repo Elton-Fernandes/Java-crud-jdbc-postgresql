@@ -12,7 +12,7 @@ public class Main {
         ClienteDAO clienteDAO = new ClienteDAO();
 
         int escolha = 1, opcao;
-        String nome, email;
+        String nome, email, emailAntigo;
 
         while (escolha != 2) {
 
@@ -44,6 +44,25 @@ public class Main {
 
                     break;
                 case 3:
+                    // Leitura do email antigo
+                    System.out.print("Insira o email antigo do cliente: ");
+                    emailAntigo = scanner.nextLine();
+
+                    // Leitura dos novos dados
+                    System.out.print("Insira o nome do cliente: ");
+                    nome = scanner.nextLine();
+
+                    System.out.print("Insira o email do cliente: ");
+                    email = scanner.nextLine();
+
+                    // Criação de um objeto cliente
+                    cliente = new Cliente(nome, email);
+
+                    // Objeto clienteDAO alterando o BD
+                    clienteDAO.alterar(emailAntigo, cliente);
+
+                    System.out.println("Dados alterados com sucesso!");
+
                     break;
                 case 4:
                     // Leitura do email
