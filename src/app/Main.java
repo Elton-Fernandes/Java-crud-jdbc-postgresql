@@ -24,6 +24,12 @@ public class Main {
             opcao = scanner.nextInt();
             scanner.nextLine();
 
+            if (opcao < 1 || opcao > 5) {
+                System.out.println("Opção inválida! Tente novamente.");
+                continue;
+            }
+            
+
             switch (opcao) {
                 case 1:
                     // Leitura do nome e email
@@ -42,8 +48,10 @@ public class Main {
                     System.out.println("Cliente cadastrado com sucesso!");
                     break;
                 case 2:
+                    // Criação do array
                     List<Cliente> clientes = clienteDAO.Listar();
 
+                    // Loop pra mostrar os nome e email de cada cliente da tabela
                     for (Cliente c : clientes) {
                         System.out.println("Nome: " + c.getNome());
                         System.out.println("Email: " + c.getEmail());
