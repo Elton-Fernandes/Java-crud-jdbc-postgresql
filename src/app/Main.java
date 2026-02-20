@@ -64,10 +64,13 @@ public class Main {
 
         // Leitura do nome e email
         System.out.print("Insira o nome: ");
-        String nome = scanner.nextLine();
+        String nome = scanner.nextLine().trim();
+
 
         System.out.print("Insira o email: ");
-        String email = scanner.nextLine();
+        String email = scanner.nextLine().trim();
+
+        email = validarEmail(email, scanner);
 
         // criação do objeto cliente
         Cliente cliente = new Cliente(nome, email);
@@ -96,14 +99,17 @@ public class Main {
 
         // Leitura do email antigo
         System.out.print("Insira o email antigo do cliente: ");
-        String emailAntigo = scanner.nextLine();
+        String emailAntigo = scanner.nextLine().trim();
+        emailAntigo = validarEmail(emailAntigo, scanner);
 
         // Leitura dos novos dados
         System.out.print("Insira o nome do cliente: ");
-        String nome = scanner.nextLine();
+        String nome = scanner.nextLine().trim();
 
         System.out.print("Insira o email do cliente: ");
-        String email = scanner.nextLine();
+        String email = scanner.nextLine().trim();
+        email = validarEmail(email, scanner);
+
 
         // Criação de um objeto cliente
         Cliente cliente = new Cliente(nome, email);
@@ -118,11 +124,26 @@ public class Main {
 
         // Leitura do email
         System.out.print("Insira o email do cliente: ");
-        String email = scanner.nextLine();
+        String email = scanner.nextLine().trim();
+        email = validarEmail(email, scanner);
 
         // objeto clienteDAO deletando o cliente no BD
         clienteDAO.deletar(email);
 
         System.out.println("Cliente deletado com sucesso!");
     }
+
+    public static String validarEmail(String email, Scanner scanner) {
+
+
+        while (!email.contains("@") || !email.contains(".")){
+            System.out.println("Email inválido! Tente novamente.");
+            System.out.print("Insira o email: ");
+            email = scanner.nextLine().trim();
+
+        }
+
+        return email;
+    }
+
 }
