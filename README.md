@@ -20,17 +20,6 @@ PostgreSQL
 IntelliJ IDEA
 Git / GitHub
 
-Estrutura do Projeto
-src/
-├── app/
-│   └── Main.java           # Entry point e menu da aplicação
-├── dao/
-│   └── ClienteDAO.java     # Acesso ao banco de dados (CRUD)
-├── model/
-│   └── Cliente.java        # Entidade Cliente
-└── util/
-    └── Conexao.java        # Classe de conexão JDBC
-
 Conceitos Aplicados
 
 Programação Orientada a Objetos (POO)
