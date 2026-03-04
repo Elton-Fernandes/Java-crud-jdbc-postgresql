@@ -55,8 +55,9 @@ public class ClienteDAO {
         return clientes;
     }
 
-    public void alterar (String emailAntigo, Cliente cliente) {
+    public boolean alterar (String emailAntigo, Cliente cliente) {
 
+        int linhasAlteradas;
         String sql = "UPDATE Cliente SET nome = ?, email = ? WHERE email = ?";
 
         try (Connection conn = Conexao.getConnection();
@@ -66,22 +67,19 @@ public class ClienteDAO {
                 stmt.setString(2, cliente.getEmail());
                 stmt.setString(3, emailAntigo);
 
-                int linhasAlteradas = stmt.executeUpdate();
+                linhasAlteradas = stmt.executeUpdate();
 
-                if (linhasAlteradas == 0) {
-                    System.out.println("Não existe cliente com esse email!");
-                }
-                else {
-                    System.out.println("Dados alterados com sucesso!");
-                }
+            return linhasAlteradas > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao alterar os dados do cliente!", e);
         }
+
     }
 
-    public void deletar (String email) {
+    public boolean deletar (String email) {
 
+        int linhasAlteradas;
         String sql = "DELETE FROM Cliente WHERE email = ?";
 
         try (Connection conn = Conexao.getConnection();
@@ -89,17 +87,13 @@ public class ClienteDAO {
 
                 stmt.setString(1, email);
 
-                int linhasAlteradas = stmt.executeUpdate();
+                linhasAlteradas = stmt.executeUpdate();
 
-                if (linhasAlteradas == 0) {
-                    System.out.println("Esse cliente não existe!");
-                }
-                else {
-                    System.out.println("Cliente deletado com sucesso!");
-                }
+            return linhasAlteradas > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao deletar o cliente!", e);
         }
+
     }
 }

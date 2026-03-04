@@ -54,8 +54,9 @@ public class ProdutoDAO {
         return produtos;
     }
 
-    public void alterar (String nomeAntigo, Produto produto) {
+    public boolean alterar (String nomeAntigo, Produto produto) {
 
+        int linhasAlteradas;
         String sql = "UPDATE produto SET nome = ?, preco = ? WHERE nome = ?";
 
         try (Connection conn = Conexao.getConnection();
@@ -65,22 +66,19 @@ public class ProdutoDAO {
             stmt.setDouble(2, produto.getPreco());
             stmt.setString(3, nomeAntigo);
 
-            int linhasAlteradas = stmt.executeUpdate();
+            linhasAlteradas = stmt.executeUpdate();
 
-            if (linhasAlteradas == 0) {
-                System.out.println("Não existe produto com esse nome!");
-            }
-            else {
-                System.out.println("Dados alterados com sucesso!");
-            }
+            return linhasAlteradas > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao alterar os dados do produto!", e);
         }
+
     }
 
-    public void deletar (String nome) {
+    public boolean deletar (String nome) {
 
+        int linhasAlteradas;
         String sql = "DELETE FROM produto WHERE nome = ?";
 
         try (Connection conn = Conexao.getConnection();
@@ -88,17 +86,13 @@ public class ProdutoDAO {
 
             stmt.setString(1, nome);
 
-            int linhasAlteradas = stmt.executeUpdate();
+            linhasAlteradas = stmt.executeUpdate();
 
-            if (linhasAlteradas == 0) {
-                System.out.println("Esse produto não existe!");
-            }
-            else {
-                System.out.println("produto deletado com sucesso!");
-            }
+            return linhasAlteradas > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao deletar o produto!", e);
         }
+
     }
 }

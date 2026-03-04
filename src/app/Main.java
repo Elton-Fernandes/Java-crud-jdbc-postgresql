@@ -192,7 +192,12 @@ public class Main {
         Cliente cliente = new Cliente(nome, email);
 
         // Objeto clienteDAO alterando o BD
-        clienteDAO.alterar(emailAntigo, cliente);
+        if (clienteDAO.alterar(emailAntigo, cliente)) {
+            System.out.println("Cliente alterado com sucesso!");
+        }
+        else {
+            System.out.println("Esse cliente não existe!");
+        }
 
     }
 
@@ -204,7 +209,12 @@ public class Main {
         email = validarEmail(email, scanner);
 
         // objeto clienteDAO deletando o cliente no BD
-        clienteDAO.deletar(email);
+        if (clienteDAO.deletar(email)) {
+            System.out.println("Cliente deletado com sucesso!");
+        }
+        else {
+            System.out.println("Esse cliente não existe!");
+        }
 
     }
 
@@ -275,7 +285,12 @@ public class Main {
         Produto produto = new Produto(nome, preco);
 
         // Objeto produtoDAO alterando o BD
-        produtoDAO.alterar(nomeAntigo, produto);
+        if (produtoDAO.alterar(nomeAntigo, produto)) {
+            System.out.println("Produto alterado com sucesso!");
+        }
+        else {
+            System.out.println("Esse produto não existe!");
+        }
 
     }
 
@@ -286,7 +301,13 @@ public class Main {
         String nome = scanner.nextLine().trim();
 
         // objeto produtoDAO deletando o cliente no BD
-        produtoDAO.deletar(nome);
+        if (produtoDAO.deletar(nome)){
+            System.out.println("Produto deletado com sucesso!");
+        }
+        else {
+            System.out.println("Esse produto não existe!");
+        }
+
 
     }
 
