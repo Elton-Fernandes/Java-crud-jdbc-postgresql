@@ -1,14 +1,15 @@
-Sistema CRUD de Clientes — Java + PostgreSQL
+Sistema CRUD de Clientes e Produtos — Java + PostgreSQL
 
-Este projeto é um CRUD de clientes desenvolvido em Java, utilizando JDBC para conexão com banco de dados PostgreSQL.
-A aplicação funciona via console e permite cadastrar, listar, alterar e deletar clientes, aplicando boas práticas de organização de código e separação de responsabilidades.
+Este projeto é um CRUD de clientes e produtos desenvolvido em Java, utilizando JDBC para conexão com banco de dados PostgreSQL.
+A aplicação funciona via console e permite cadastrar, listar, alterar e deletar, aplicando boas práticas de organização de código e separação de responsabilidades.
 
 Funcionalidades
 
 Cadastrar cliente (nome e email)
-Listar todos os clientes
-Alterar dados de um cliente
-Deletar cliente pelo email
+Cadastraar Produto (nome e preço)
+Listar
+Alterar dados
+Deletar
 Prevenção contra SQL Injection com PreparedStatement
 Menu interativo em loop
 
@@ -35,6 +36,12 @@ CREATE TABLE Cliente (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE produto (
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL UNIQUE,
+	preco NUMERIC(10,2) NOT NULL
 );
 
 ▶️ Como Executar o Projeto
