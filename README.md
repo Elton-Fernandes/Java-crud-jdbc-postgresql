@@ -48,7 +48,7 @@ CREATE TABLE produto (
 
 Clone o repositório:
 
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone https://github.com/Elton-Fernandes/Java-crud-jdbc-postgresql
 
 
 Configure o banco de dados PostgreSQL
